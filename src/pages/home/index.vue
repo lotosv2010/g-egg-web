@@ -1,4 +1,14 @@
-<script setup lang="ts"></script>
+<script setup lang="ts">
+import { onMounted } from 'vue';
+import { getUserInfo } from '@/apis/home';
+
+onMounted(async () => {
+  await getUserInfo({
+    pageNum: 1,
+    pageSize: 2,
+  });
+});
+</script>
 
 <template>
   <div class="sc-AxmLO gmtmqV">

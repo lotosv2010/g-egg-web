@@ -4,6 +4,7 @@ module.exports = {
   // customSyntax: 'postcss-html',
   rules: {
     indentation: 2,
+    'no-duplicate-selectors': null,
     'no-descending-specificity': null,
     'function-url-quotes': 'always',
     'string-quotes': 'double',

@@ -50,7 +50,7 @@ class Request {
       (res: AxiosResponse) => {
         return res.data;
       },
-      (err: any) => err,
+      (err: any) => Promise.reject(err),
     );
   }
   /**

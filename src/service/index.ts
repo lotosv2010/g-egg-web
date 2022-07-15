@@ -33,10 +33,6 @@ const request = new Request({
  * @returns {Promise}
  */
 const req = <D = any, T = any>(config: IRequest<D>) => {
-  const { method = 'GET' } = config;
-  if (method === 'get' || method === 'GET') {
-    config.params = config.data;
-  }
   return request.request<IResponse<T>>(config);
 };
 export const upload = (url: string, data: File) => {
