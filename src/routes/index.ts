@@ -7,8 +7,20 @@ export const routes = [
   },
   {
     path: '/home',
-    name: 'Home',
-    component: () => import('@/pages/home/index.vue'), // 注意这里要带上 文件后缀.vue
+    name: 'Layout',
+    component: () => import('@/layouts/AppLayout.vue'), // 注意这里要带上 文件后缀.vue
+    children: [
+      {
+        path: '',
+        name: 'Home',
+        component: () => import('@/pages/home/index.vue'), // 注意这里要带上 文件后缀.vue
+      },
+    ],
+  },
+  {
+    path: '/login',
+    name: 'Login',
+    component: () => import('@/pages/login/index.vue'),
   },
   {
     path: '/404',
