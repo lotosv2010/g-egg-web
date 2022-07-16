@@ -1,6 +1,6 @@
 import Request from './request';
 import { AxiosResponse } from 'axios';
-
+import { useGlobalStore } from '@/stores';
 import type { RequestConfig } from './request/types';
 
 interface IResponse<T> {
@@ -17,7 +17,14 @@ const request = new Request({
   timeout: 1000 * 60 * 5,
   interceptors: {
     // 请求拦截器
-    requestInterceptors: (config) => config,
+    requestInterceptors: (config: any) => {
+      // store
+      const store = useGlobalStore();
+      if (store?.token) {
+        config.headers.Authorization = `Bearer ${store?.token}`;
+      }
+      return config;
+    },
     // 响应拦截器
     responseInterceptors: (result: AxiosResponse) => {
       return result;

@@ -1,3 +1,12 @@
+<script setup lang="ts">
+import { storeToRefs } from 'pinia';
+import { useGlobalStore } from '@/stores';
+
+// store
+const store = useGlobalStore();
+const { user }: any = storeToRefs(store);
+</script>
+
 <template>
   <div class="sc-AxhUy JixXX">
     <div class="logo flex-row">
@@ -51,12 +60,12 @@
             alt="user-avatar"
         /></a>
       </li>
-      <li>
+      <li v-if="user">
         <a href="">
-          <span>SIGN IN</span>
+          <span>{{ user?.username ?? 'SIGN IN' }}</span>
         </a>
       </li>
-      <li>
+      <li v-if="!user">
         <a href="">
           <span>SIGN UP</span>
         </a>

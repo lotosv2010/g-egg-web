@@ -1,4 +1,5 @@
 import { defineStore } from 'pinia';
+import { localCache } from '@/utils';
 
 export const useGlobalStore = defineStore({
   id: 'global',
@@ -6,10 +7,12 @@ export const useGlobalStore = defineStore({
     title: 'App',
     theme: 'default',
     language: 'zh',
+    user: localCache.getItem('user') ?? {},
   }),
   // getters
   getters: {
     // title: (state) => state.title,
+    token: (state) => state.user?.token,
   },
   actions: {
     setTitle(payload: string) {
@@ -28,6 +31,10 @@ export const useGlobalStore = defineStore({
           resolve(payload);
         }, 1000);
       });
+    },
+    setUser(payload: any) {
+      this.user = payload;
+      localCache.setItem('user', payload);
     },
   },
 });

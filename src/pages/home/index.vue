@@ -2,6 +2,7 @@
 import { onMounted } from 'vue';
 import { getUserInfo } from '@/apis/home';
 
+// lifecylce
 onMounted(async () => {
   await getUserInfo({
     pageNum: 1,

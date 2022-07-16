@@ -4,7 +4,7 @@ export const getUserInfo = async (params?: object) => {
   let data = {};
   try {
     data = await request({
-      url: '/videos',
+      url: '/users/videos/feed',
       method: 'GET',
       params,
     });
