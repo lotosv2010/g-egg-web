@@ -1,10 +1,20 @@
 <script setup lang="ts">
+import { ref } from 'vue';
 import { storeToRefs } from 'pinia';
 import { useGlobalStore } from '@/stores';
+import UploadVideo from '@/components/UploadVideo/index.vue';
 
 // store
 const store = useGlobalStore();
 const { user }: any = storeToRefs(store);
+
+// state
+const isUploadShow = ref(false);
+
+// events
+const setIsUploadShow = (flag: boolean) => {
+  isUploadShow.value = flag;
+};
 </script>
 
 <template>
@@ -19,7 +29,7 @@ const { user }: any = storeToRefs(store);
       <template v-if="user.token">
         <li>
           <div>
-            <label for="video-upload">
+            <label for="video-upload" @click="setIsUploadShow(true)">
               <svg
                 viewBox="0 0 24 24"
                 preserveAspectRatio="xMidYMid meet"
@@ -76,4 +86,5 @@ const { user }: any = storeToRefs(store);
       </template>
     </ul>
   </div>
+  <UploadVideo v-if="isUploadShow" @close="setIsUploadShow" />
 </template>

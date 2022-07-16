@@ -125,24 +125,14 @@
       <h4>Subscriptions</h4>
       <a href="/channel/17396dbd-8cb2-4866-804c-f1c928adc200"
         ><div class="channel">
-          <img
-            src="https://res.cloudinary.com/tylerdurden/image/upload/v1610602675/youutbeclone/cyytoyb0dtzouizokimz.jpg"
-            alt="avatar"
-          /><span>manikandanraji</span>
+          <img src="https://joeschmoe.io/api/v1/random" alt="avatar" /><span>manikandanraji</span>
         </div></a
       ><a href="/channel/bcb6ce6e-2868-4e45-b4ac-d58b84ee22de"
-        ><div class="channel">
-          <img
-            src="https://res.cloudinary.com/douy56nkf/image/upload/v1594060920/defaults/txxeacnh3vanuhsemfc8.png"
-            alt="avatar"
-          /><span>gamer</span>
-        </div></a
+        ><div class="channel"><img src="https://joeschmoe.io/api/v1/random" alt="avatar" /><span>gamer</span></div></a
       ><a href="/channel/0b39ae9c-611b-41e9-99f3-b9e5c1b15596"
         ><div class="channel">
-          <img
-            src="https://res.cloudinary.com/douy56nkf/image/upload/v1594060920/defaults/txxeacnh3vanuhsemfc8.png"
-            alt="avatar"
-          /><span>zhishiqu</span>
+          <img src="https://joeschmoe.io/api/v1/random" alt="avatar" />
+          <span>zhishiqu</span>
         </div></a
       >
     </div>
