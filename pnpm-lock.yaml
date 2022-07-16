@@ -18,6 +18,7 @@ specifiers:
   axios: ^0.26.1
   babel-jest: ^27.5.1
   cypress: ^9.5.4
+  dayjs: ^1.11.3
   element-plus: ^2.1.10
   eslint: ^8.13.0
   eslint-config-prettier: ^8.5.0
@@ -56,6 +57,7 @@ specifiers:
 dependencies:
   '@element-plus/icons-vue': 1.1.4_vue@3.2.32
   axios: 0.26.1
+  dayjs: 1.11.3
   element-plus: 2.1.10_vue@3.2.32
   nprogress: 0.2.0
   pinia: 2.0.13_gjl5abjxt2pdqp2hm4krz4y24a
@@ -3448,7 +3450,7 @@ packages:
       cli-table3: 0.6.2
       commander: 5.1.0
       common-tags: 1.8.2
-      dayjs: 1.11.1
+      dayjs: 1.11.3
       debug: 4.3.4_supports-color@8.1.1
       enquirer: 2.3.6
       eventemitter2: 6.4.5
@@ -3492,8 +3494,8 @@ packages:
       whatwg-url: 8.7.0
     dev: true
 
-  /dayjs/1.11.1:
-    resolution: {integrity: sha512-ER7EjqVAMkRRsxNCC5YqJ9d9VQYuWdGt7aiH2qA5R5wt8ZmWaP2dLUSIK6y/kVzLMlmh1Tvu5xUf4M/wdGJ5KA==}
+  /dayjs/1.11.3:
+    resolution: {integrity: sha512-xxwlswWOlGhzgQ4TKzASQkUhqERI3egRNqgV4ScR8wlANA/A9tZ7miXa44vTTKEq5l7vWoL5G57bG3zA+Kow0A==}
 
   /debug/2.6.9:
     resolution: {integrity: sha512-bC7ElrdJaJnPbAP+1EotYvqZsb3ecl5wi6Bfi6BJTUcNowp6cvspg0jXznRTKDjm/E7AdgFBVeAPVMNcKGsHMA==}
@@ -3810,7 +3812,7 @@ packages:
       '@types/lodash-es': 4.17.6
       '@vueuse/core': 8.3.0_vue@3.2.32
       async-validator: 4.0.7
-      dayjs: 1.11.1
+      dayjs: 1.11.3
       escape-html: 1.0.3
       lodash: 4.17.21
       lodash-es: 4.17.21

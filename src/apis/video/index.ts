@@ -7,3 +7,10 @@ export const createVideo = async (data: any) => {
     data,
   })) as any;
 };
+
+export const getVideo = async (videoId: string) => {
+  return (await request({
+    url: `/videos/${videoId}`,
+    method: 'GET',
+  })) as any;
+};

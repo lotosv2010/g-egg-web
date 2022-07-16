@@ -1,13 +1,40 @@
 <script setup lang="ts">
-import { onMounted } from 'vue';
-import { getUserInfo } from '@/apis/home';
+import { onMounted, ref } from 'vue';
+import dayjs from 'dayjs';
+import { useRouter } from 'vue-router';
+import { getVideos } from '@/apis/home';
+
+// router
+const router = useRouter();
+
+// state
+const videoList: any = ref([]);
+
+// events
+const getVideoList = async () => {
+  try {
+    const { videos }: any = await getVideos({
+      pageNum: 1,
+      pageSize: 20,
+    });
+    videoList.value = videos ?? [];
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+const showDetail = (videoId: string) => {
+  router.push({
+    name: 'Watch',
+    params: {
+      videoId,
+    },
+  });
+};
 
 // lifecylce
-onMounted(async () => {
-  await getUserInfo({
-    pageNum: 1,
-    pageSize: 2,
-  });
+onMounted(() => {
+  getVideoList();
 });
 </script>
 
@@ -16,122 +43,36 @@ onMounted(async () => {
     <div class="sc-fzokOt hLgJkJ">
       <h2>Recommended</h2>
       <div class="sc-fzoLsD fYZyZu">
-        <a href="/watch/3ac30e23-45a6-4eca-9430-3654142a772c"
-          ><div class="sc-fzozJi dteCCc">
+        <a v-for="v in videoList" :key="v?._id" @click="showDetail(v?._id)">
+          <div class="sc-fzozJi dteCCc">
             <img
               class="thumb"
-              src="https://zos.alipayobjects.com/rmsportal/jkjgkEfvpUPVyRjUImniVslZfWPnJuuZ.png"
+              :src="
+                v?.cover ||
+                `https://zos.alipayobjects.com/rmsportal/jkjgkEfvpUPVyRjUImniVslZfWPnJuuZ.png?x-oss-process=image/blur,r_50,s_50/quality,q_1/resize,m_mfit,h_200,w_200`
+              "
               alt="thumbnail"
             />
             <div class="video-info-container">
               <div class="channel-avatar">
                 <img
-                  src="https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png"
+                  :src="v?.user?.avatar ?? `https://joeschmoe.io/api/v1/random`"
                   alt="channel avatar"
                   class="sc-AxhCb eSwYtm"
                   style="margin-right: 0.8rem"
                 />
               </div>
               <div class="video-info">
-                <h4>Twitter clone</h4>
-                <span class="secondary">manikandanraji</span>
-                <p class="secondary"><span>6 views</span> <span>•</span> <span>22 days ago</span></p>
+                <h4>{{ v?.title }}</h4>
+                <span class="secondary">{{ v?.description }}</span>
+                <p class="secondary">
+                  <span>{{ v?.viewsCount }} views</span> <span>• </span>
+                  <span>{{ dayjs(v?.createdAt).format('YYYY-MM-DD') }}</span>
+                </p>
               </div>
             </div>
-          </div></a
-        ><a href="/watch/05f411f6-9c9d-4e97-8d65-47847cd99e87"
-          ><div class="sc-fzozJi dteCCc">
-            <img
-              class="thumb"
-              src="https://zos.alipayobjects.com/rmsportal/jkjgkEfvpUPVyRjUImniVslZfWPnJuuZ.png"
-              alt="thumbnail"
-            />
-            <div class="video-info-container">
-              <div class="channel-avatar">
-                <img
-                  src="https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png"
-                  alt="channel avatar"
-                  class="sc-AxhCb eSwYtm"
-                  style="margin-right: 0.8rem"
-                />
-              </div>
-              <div class="video-info">
-                <h4>Youtubeception</h4>
-                <span class="secondary">manikandanraji</span>
-                <p class="secondary"><span>1 views</span> <span>•</span> <span>22 days ago</span></p>
-              </div>
-            </div>
-          </div></a
-        ><a href="/watch/b4bafa92-b60d-40a8-ad50-ecd47406edd5"
-          ><div class="sc-fzozJi dteCCc">
-            <img
-              class="thumb"
-              src="https://zos.alipayobjects.com/rmsportal/jkjgkEfvpUPVyRjUImniVslZfWPnJuuZ.png"
-              alt="thumbnail"
-            />
-            <div class="video-info-container">
-              <div class="channel-avatar">
-                <img
-                  src="https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png"
-                  alt="channel avatar"
-                  class="sc-AxhCb eSwYtm"
-                  style="margin-right: 0.8rem"
-                />
-              </div>
-              <div class="video-info">
-                <h4>Instaclone</h4>
-                <span class="secondary">manikandanraji</span>
-                <p class="secondary"><span>1 views</span> <span>•</span> <span>22 days ago</span></p>
-              </div>
-            </div>
-          </div></a
-        ><a href="/watch/e73d8a64-0819-4cb9-be16-fe4599814a61"
-          ><div class="sc-fzozJi dteCCc">
-            <img
-              class="thumb"
-              src="https://zos.alipayobjects.com/rmsportal/jkjgkEfvpUPVyRjUImniVslZfWPnJuuZ.png"
-              alt="thumbnail"
-            />
-            <div class="video-info-container">
-              <div class="channel-avatar">
-                <img
-                  src="https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png"
-                  alt="channel avatar"
-                  class="sc-AxhCb eSwYtm"
-                  style="margin-right: 0.8rem"
-                />
-              </div>
-              <div class="video-info">
-                <h4>Podcasts Webapp</h4>
-                <span class="secondary">manikandanraji</span>
-                <p class="secondary"><span>0 views</span> <span>•</span> <span>22 days ago</span></p>
-              </div>
-            </div>
-          </div></a
-        ><a href="/watch/f9dae74d-8aad-499b-bd62-ef28e44a74fd"
-          ><div class="sc-fzozJi dteCCc">
-            <img
-              class="thumb"
-              src="https://zos.alipayobjects.com/rmsportal/jkjgkEfvpUPVyRjUImniVslZfWPnJuuZ.png"
-              alt="thumbnail"
-            />
-            <div class="video-info-container">
-              <div class="channel-avatar">
-                <img
-                  src="https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png"
-                  alt="channel avatar"
-                  class="sc-AxhCb eSwYtm"
-                  style="margin-right: 0.8rem"
-                />
-              </div>
-              <div class="video-info">
-                <h4>Leetcode styled SPA</h4>
-                <span class="secondary">manikandanraji</span>
-                <p class="secondary"><span>0 views</span> <span>•</span> <span>22 days ago</span></p>
-              </div>
-            </div>
-          </div></a
-        >
+          </div>
+        </a>
       </div>
     </div>
   </div>

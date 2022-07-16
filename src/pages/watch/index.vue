@@ -1,3 +1,32 @@
+<script lang="ts" setup>
+import { onMounted, ref } from 'vue';
+import { getVideo } from '@/apis/video';
+import { useRoute } from 'vue-router';
+import dayjs from 'dayjs';
+
+// router
+const route = useRoute();
+
+// state
+const videoInfo: any = ref({});
+
+// events
+const getVideoById = async () => {
+  try {
+    const { videoId }: any = route.params;
+    const { video } = await getVideo(videoId);
+    videoInfo.value = video ?? {};
+  } catch (error: any) {
+    console.log(error?.response?.data);
+  }
+};
+
+// lifecycle
+onMounted(() => {
+  getVideoById();
+});
+</script>
+
 <template>
   <div class=".sc-AxmLO gmtmqV">
     <div class="sc-fzoXWK fRnHrz">
@@ -6,9 +35,12 @@
           <video src="" controls></video>
         </div>
         <div class="video-info">
-          <h3>321321</h3>
+          <h3>{{ videoInfo?.title }}</h3>
           <div class="video-info-stats">
-            <p><span>0 views</span> <span>•</span> <span>12 hours ago</span></p>
+            <p>
+              <span>{{ videoInfo?.viewsCount }} views</span> <span>• </span>
+              <span>{{ dayjs(videoInfo?.createdAt).format('YYYY-MM-DD HH:mm:ss') }}</span>
+            </p>
             <div class="likes-dislikes flex-row">
               <p class="flex-row like">
                 <svg
@@ -50,9 +82,9 @@
               />
               <div class="channel-info-meta">
                 <h4>
-                  <a href="/channel/b41a4163-979c-4224-a879-0a6e009af309">lipengzhou</a>
+                  <a href="/channel/b41a4163-979c-4224-a879-0a6e009af309">{{ videoInfo?.user?.username }}</a>
                 </h4>
-                <span class="secondary small">5 subscribers</span>
+                <span class="secondary small">{{ videoInfo?.user?.subscribersCount }} subscribers</span>
               </div>
             </div>
           </div>
