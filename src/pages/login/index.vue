@@ -1,11 +1,12 @@
 <script lang="ts" setup>
 import { reactive, ref } from 'vue';
-import { useRouter } from 'vue-router';
+import { useRouter, useRoute } from 'vue-router';
 import { useGlobalStore } from '@/stores';
 import { login } from '@/apis/user';
 
 // router
 const router = useRouter();
+const route = useRoute();
 
 // store
 const store = useGlobalStore();
@@ -23,8 +24,9 @@ const onLogin = async () => {
   try {
     const res = await login(user);
     store.setUser(res?.user ?? {});
+    const { redirect }: any = route.query;
     router.push({
-      path: '/home',
+      path: redirect ?? '/home',
     });
   } catch (e: any) {
     if (e.response?.status === 422) {
